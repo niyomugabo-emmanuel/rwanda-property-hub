@@ -311,7 +311,7 @@ footer {
 
     <h2 class="section-title">Featured Properties</h2>
 
-    <div class="properties">
+    <div class="properties" id="propertyList">
 
         <div class="property">
 
@@ -518,10 +518,24 @@ function submitProperty(event) {
     const bedrooms = document.getElementById("postBedrooms").value;
     const description = document.getElementById("postDescription").value;
     const name = document.getElementById("postName").value;
-    const phone = document.getElementById("postPhone").value;
-
+    const phone = document.getElementById("postPhone").value
+const propertyList = document.getElementById("propertyList");
     alert("Property submitted successfully!");
+const newProperty = document.createElement("div");
+newProperty.className = "property";
 
+newProperty.innerHTML = `
+    <div class="property-content">
+        <h3>${title}</h3>
+        <p>📍 ${location}</p>
+        <div class="price">RWF ${Number(price).toLocaleString()}</div>
+        <p>${bedrooms} Bedrooms</p>
+        <p>${description}</p>
+        <p>Contact: ${name} - ${phone}</p>
+    </div>
+`;
+
+propertyList.appendChild(newProperty);
 }
 
 </script>
