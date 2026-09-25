@@ -390,11 +390,11 @@ footer {
 
     <h2 class="section-title">Post Your Property</h2>
 
-    <form>
+    <form id="propertyForm">
 
         <div class="form-group">
             <label>Property Title</label>
-            <input type="text" placeholder="Example: 4 Bedroom House for Sale">
+           <input type="text" id="propertyTitle" placeholder="Example: 4 Bedroom House for Sale">
         </div>
 
         <div class="form-group">
@@ -408,38 +408,38 @@ footer {
                 <option>Commercial Property</option>
                 <option>Farm</option>
                 <option>Other</option>
-            </select>
+          <select id="postPropertyType">
 
         </div>
 
         <div class="form-group">
             <label>Location</label>
-            <input type="text" placeholder="District, Sector, Cell">
+           <input type="text" id="postLocation" placeholder="District, Sector, Cell">
         </div>
 
         <div class="form-group">
             <label>Price (RWF)</label>
-            <input type="number" placeholder="Example: 50000000">
+            <input type="number" id="postPrice" placeholder="Example: 50000000">
         </div>
 
         <div class="form-group">
             <label>Number of Bedrooms</label>
-            <input type="number" placeholder="Example: 4">
+            <input type="number" id="postBedrooms" placeholder="Example: 4">
         </div>
 
         <div class="form-group">
             <label>Property Description</label>
-            <textarea placeholder="Describe your property..."></textarea>
+           <textarea id="postDescription" placeholder="Describe your property..."></textarea>
         </div>
 
         <div class="form-group">
             <label>Your Name</label>
-            <input type="text" placeholder="Enter your name">
+            <input type="text" id="postName" placeholder="Enter your name">
         </div>
 
         <div class="form-group">
             <label>Phone Number</label>
-            <input type="tel" placeholder="+250...">
+            <input type="tel" id="postPhone" placeholder="+250...">
         </div>
 
         <div class="form-group">
@@ -447,7 +447,7 @@ footer {
             <input type="file" accept="image/*">
         </div>
 
-        <button type="submit">Submit Property</button>
+        <button type="submit" onclick="submitProperty(event)">Submit Property</button>
 
     </form>
 
@@ -483,6 +483,47 @@ function searchProperties() {
 
     document.getElementById("properties").scrollIntoView();
 }
+<script>
+
+function searchProperties() {
+    const type = document.getElementById("propertyType").value;
+    const location = document.getElementById("location").value.toLowerCase();
+
+    const properties = document.querySelectorAll(".property");
+
+    properties.forEach(function(property) {
+        const text = property.innerText.toLowerCase();
+
+        const typeMatch = type === "Property Type" || text.includes(type.toLowerCase());
+        const locationMatch = location === "" || text.includes(location);
+
+        if (typeMatch && locationMatch) {
+            property.style.display = "block";
+        } else {
+            property.style.display = "none";
+        }
+    });
+
+    document.getElementById("properties").scrollIntoView();
+}
+
+
+function submitProperty(event) {
+    event.preventDefault();
+
+    const title = document.getElementById("propertyTitle").value;
+    const type = document.getElementById("postPropertyType").value;
+    const location = document.getElementById("postLocation").value;
+    const price = document.getElementById("postPrice").value;
+    const bedrooms = document.getElementById("postBedrooms").value;
+    const description = document.getElementById("postDescription").value;
+    const name = document.getElementById("postName").value;
+    const phone = document.getElementById("postPhone").value;
+
+    alert("Property submitted successfully!");
+
+}
+
 </script>
 </body>
 </html>
