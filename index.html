@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -259,7 +259,7 @@ footer {
             <option>Farm</option>
         </select>
 
-        <input type="text" placeholder="Enter location e.g. Kigali">
+        <input type="text" id="location" placeholder="Enter location e.g. Kigali"> 
 
         <button onclick="searchProperties()">Search</button>
 
@@ -400,7 +400,7 @@ footer {
         <div class="form-group">
             <label>Property Type</label>
 
-            <select>
+            <select id="propertyType">
                 <option>Select Property Type</option>
                 <option>House</option>
                 <option>Land</option>
@@ -463,7 +463,25 @@ footer {
 </footer>
 <script>
 function searchProperties() {
-    alert("Search is working!");
+    const type = document.getElementById("propertyType").value;
+    const location = document.getElementById("location").value.toLowerCase();
+
+    const properties = document.querySelectorAll(".property");
+
+    properties.forEach(function(property) {
+        const text = property.innerText.toLowerCase();
+
+        const typeMatch = type === "Property Type" || text.includes(type.toLowerCase());
+        const locationMatch = location === "" || text.includes(location);
+
+        if (typeMatch && locationMatch) {
+            property.style.display = "block";
+        } else {
+            property.style.display = "none";
+        }
+    });
+
+    document.getElementById("properties").scrollIntoView();
 }
 </script>
 </body>
