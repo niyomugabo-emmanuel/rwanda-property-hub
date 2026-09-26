@@ -508,7 +508,7 @@ function searchProperties() {
 }
 
 
-function submitProperty(event) {
+function submitProperty(event) {  
     event.preventDefault();
 
     const title = document.getElementById("propertyTitle").value;
@@ -520,6 +520,21 @@ function submitProperty(event) {
     const name = document.getElementById("postName").value;
     const phone = document.getElementById("postPhone").value
 const propertyList = document.getElementById("propertyList");
+ const newProperty = document.createElement("div");
+newProperty.className = "property";
+
+newProperty.innerHTML = `
+    <div class="property-content">
+        <h3>${title}</h3>
+        <p>📍 ${location}</p>
+        <div class="price">RWF ${Number(price).toLocaleString()}</div>
+        <p>${bedrooms} Bedrooms</p>
+        <p>${description}</p>
+        <p>Contact: ${name} - ${phone}</p>
+    </div>
+`;
+
+propertyList.appendChild(newProperty);
     alert("Property submitted successfully!");
 const newProperty = document.createElement("div");
 newProperty.className = "property";
