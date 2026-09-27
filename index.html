@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -40,8 +40,9 @@ nav a {
 }
 
 .hero {
-    background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
-    url("https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1600&q=80");
+    background:
+        linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+        url("https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1600&q=80");
     background-size: cover;
     background-position: center;
     padding: 90px 20px;
@@ -250,18 +251,22 @@ footer {
 
     <div class="search-box">
 
-        <select>
-            <option>Property Type</option>
-            <option>House</option>
-            <option>Land</option>
-            <option>Apartment</option>
-            <option>Commercial Property</option>
-            <option>Farm</option>
+        <select id="propertyType">
+            <option value="Property Type">Property Type</option>
+            <option value="House">House</option>
+            <option value="Land">Land</option>
+            <option value="Apartment">Apartment</option>
+            <option value="Commercial Property">Commercial Property</option>
+            <option value="Farm">Farm</option>
         </select>
 
-        <input type="text" id="location" placeholder="Enter location e.g. Kigali"> 
+        <input
+            type="text"
+            id="location"
+            placeholder="Enter location e.g. Kigali"
+        >
 
-        <button onclick="searchProperties()">Search</button>
+        <button type="button" onclick="searchProperties()">Search</button>
 
     </div>
 
@@ -325,12 +330,11 @@ footer {
 
                 <div class="price">RWF 85,000,000</div>
 
-                <button>View Property</button>
+                <button type="button">View Property</button>
 
             </div>
 
         </div>
-
 
         <div class="property">
 
@@ -344,12 +348,11 @@ footer {
 
                 <div class="price">RWF 25,000,000</div>
 
-                <button>View Property</button>
+                <button type="button">View Property</button>
 
             </div>
 
         </div>
-
 
         <div class="property">
 
@@ -363,7 +366,7 @@ footer {
 
                 <div class="price">RWF 120,000,000</div>
 
-                <button>View Property</button>
+                <button type="button">View Property</button>
 
             </div>
 
@@ -379,12 +382,14 @@ footer {
 
     <p>List your property on Rwanda Property Hub and reach potential buyers.</p>
 
-    <button onclick="document.getElementById('post-property').scrollIntoView()">
+    <button
+        type="button"
+        onclick="document.getElementById('post-property').scrollIntoView()"
+    >
         Post Your Property
     </button>
 
 </section>
-
 
 <div class="container" id="post-property">
 
@@ -394,66 +399,130 @@ footer {
 
         <div class="form-group">
             <label>Property Title</label>
-           <input type="text" id="propertyTitle" placeholder="Example: 4 Bedroom House for Sale">
+
+            <input
+                type="text"
+                id="propertyTitle"
+                placeholder="Example: 4 Bedroom House for Sale"
+            >
         </div>
 
-       <div class="form-group">
-    <label>Property Type</label>
+        <div class="form-group">
 
-    <select id="postPropertyType">
-        <option value="">Select Property Type</option>
-        <option value="House">House</option>
-        <option value="Land">Land</option>
-        <option value="Apartment">Apartment</option>
-        <option value="Commercial Property">Commercial Property</option>
-        <option value="Farm">Farm</option>
-        <option value="Other">Other</option>
-    </select>
-</div>
+            <label>Property Type</label>
+
+            <select id="postPropertyType">
+
+                <option value="">Select Property Type</option>
+
+                <option value="House">House</option>
+
+                <option value="Land">Land</option>
+
+                <option value="Apartment">Apartment</option>
+
+                <option value="Commercial Property">
+                    Commercial Property
+                </option>
+
+                <option value="Farm">Farm</option>
+
+                <option value="Other">Other</option>
+
+            </select>
 
         </div>
 
         <div class="form-group">
+
             <label>Location</label>
-           <input type="text" id="postLocation" placeholder="District, Sector, Cell">
+
+            <input
+                type="text"
+                id="postLocation"
+                placeholder="District, Sector, Cell"
+            >
+
         </div>
 
         <div class="form-group">
+
             <label>Price (RWF)</label>
-            <input type="number" id="postPrice" placeholder="Example: 50000000">
+
+            <input
+                type="number"
+                id="postPrice"
+                placeholder="Example: 50000000"
+            >
+
         </div>
 
         <div class="form-group">
+
             <label>Number of Bedrooms</label>
-            <input type="number" id="postBedrooms" placeholder="Example: 4">
+
+            <input
+                type="number"
+                id="postBedrooms"
+                placeholder="Example: 4"
+            >
+
         </div>
 
         <div class="form-group">
+
             <label>Property Description</label>
-           <textarea id="postDescription" placeholder="Describe your property..."></textarea>
+
+            <textarea
+                id="postDescription"
+                placeholder="Describe your property..."
+            ></textarea>
+
         </div>
 
         <div class="form-group">
+
             <label>Your Name</label>
-            <input type="text" id="postName" placeholder="Enter your name">
+
+            <input
+                type="text"
+                id="postName"
+                placeholder="Enter your name"
+            >
+
         </div>
 
         <div class="form-group">
+
             <label>Phone Number</label>
-            <input type="tel" id="postPhone" placeholder="+250...">
+
+            <input
+                type="tel"
+                id="postPhone"
+                placeholder="+250..."
+            >
+
         </div>
 
         <div class="form-group">
+
             <label>Property Photo</label>
-            <input type="file" accept="image/*">
+
+            <input
+                type="file"
+                id="postPhoto"
+                accept="image/*"
+            >
+
         </div>
 
-       <button type="button" onclick="submitProperty(event)">Submit Property</button>
+        <button type="button" onclick="submitProperty(event)">
+            Submit Property
+        </button>
 
     </form>
 
 </div>
-
 
 <footer>
 
@@ -462,59 +531,157 @@ footer {
     <p>Connecting property sellers and buyers in Rwanda.</p>
 
 </footer>
-<script>
-function searchProperties() {
-    const type = document.getElementById("propertyType").value;
-    const location = document.getElementById("location").value.toLowerCase();
 
-    const properties = document.querySelectorAll(".property");
-
-    properties.forEach(function(property) {
-        const text = property.innerText.toLowerCase();
-
-        const typeMatch = type === "Property Type" || text.includes(type.toLowerCase());
-        const locationMatch = location === "" || text.includes(location);
-
-        if (typeMatch && locationMatch) {
-            property.style.display = "block";
-        } else {
-            property.style.display = "none";
-        }
-    });
-
-    document.getElementById("properties").scrollIntoView();
-}
 <script>
 
 function searchProperties() {
-    const type = document.getElementById("propertyType").value;
-    const location = document.getElementById("location").value.toLowerCase();
 
-    const properties = document.querySelectorAll(".property");
+    const type = document.getElementById("propertyType").value;
+
+    const location =
+        document.getElementById("location").value.toLowerCase().trim();
+
+    const properties =
+        document.querySelectorAll("#propertyList .property");
 
     properties.forEach(function(property) {
+
         const text = property.innerText.toLowerCase();
 
-        const typeMatch = type === "Property Type" || text.includes(type.toLowerCase());
-        const locationMatch = location === "" || text.includes(location);
+        const typeMatch =
+            type === "Property Type" ||
+            text.includes(type.toLowerCase());
+
+        const locationMatch =
+            location === "" ||
+            text.includes(location);
 
         if (typeMatch && locationMatch) {
+
             property.style.display = "block";
+
         } else {
+
             property.style.display = "none";
+
         }
+
     });
 
-    document.getElementById("properties").scrollIntoView();
+    document
+        .getElementById("properties")
+        .scrollIntoView({ behavior: "smooth" });
 }
-
 
 
 function submitProperty(event) {
+
     event.preventDefault();
 
-    alert("Submit is working!");
+    const title =
+        document.getElementById("propertyTitle").value.trim();
+
+    const type =
+        document.getElementById("postPropertyType").value;
+
+    const location =
+        document.getElementById("postLocation").value.trim();
+
+    const price =
+        document.getElementById("postPrice").value;
+
+    const bedrooms =
+        document.getElementById("postBedrooms").value;
+
+    const description =
+        document.getElementById("postDescription").value.trim();
+
+    const name =
+        document.getElementById("postName").value.trim();
+
+    const phone =
+        document.getElementById("postPhone").value.trim();
+
+    const propertyList =
+        document.getElementById("propertyList");
+
+
+    if (
+        title === "" ||
+        type === "" ||
+        location === "" ||
+        price === "" ||
+        description === "" ||
+        name === "" ||
+        phone === ""
+    ) {
+
+        alert("Please fill in all required fields.");
+
+        return;
+    }
+
+
+    const newProperty =
+        document.createElement("div");
+
+    newProperty.className = "property";
+
+
+    newProperty.innerHTML = `
+
+        <div class="property-content">
+
+            <h3>${title}</h3>
+
+            <p>🏠 ${type}</p>
+
+            <p>📍 ${location}</p>
+
+            <div class="price">
+                RWF ${Number(price).toLocaleString()}
+            </div>
+
+            <p>
+                🛏️ ${bedrooms || "Not specified"} Bedrooms
+            </p>
+
+            <p>
+                ${description}
+            </p>
+
+            <p>
+                👤 Contact: ${name}
+            </p>
+
+            <p>
+                📞 ${phone}
+            </p>
+
+        </div>
+
+    `;
+
+
+    propertyList.appendChild(newProperty);
+
+
+    alert("Property submitted successfully!");
+
+
+    document
+        .getElementById("propertyForm")
+        .reset();
+
+
+    newProperty.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
 }
+
 </script>
+
 </body>
 </html>
