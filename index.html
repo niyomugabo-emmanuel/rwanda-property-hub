@@ -510,35 +510,10 @@ function searchProperties() {
 
 
 
-function submitProperty(event) {  
+function submitProperty(event) {
     event.preventDefault();
 
-    const title = document.getElementById("propertyTitle").value;
-    const type = document.getElementById("postPropertyType").value;
-    const location = document.getElementById("postLocation").value;
-    const price = document.getElementById("postPrice").value;
-    const bedrooms = document.getElementById("postBedrooms").value;
-    const description = document.getElementById("postDescription").value;
-    const name = document.getElementById("postName").value;
-    const phone = document.getElementById("postPhone").value;
-const propertyList = document.getElementById("propertyList");
- const newProperty = document.createElement("div");
-newProperty.className = "property";
-
-newProperty.innerHTML = `
-    <div class="property-content">
-        <h3>${title}</h3>
-        <p>📍 ${location}</p>
-        <div class="price">RWF ${Number(price).toLocaleString()}</div>
-        <p>${bedrooms} Bedrooms</p>
-        <p>${description}</p>
-        <p>Contact: ${name} - ${phone}</p>
-    </div>
-`;
-
-propertyList.appendChild(newProperty);
-
-alert("Property submitted successfully!");
+    alert("Submit is working!");
 }
 </script>
 </body>
