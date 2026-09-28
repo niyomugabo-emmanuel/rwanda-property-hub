@@ -605,7 +605,6 @@ function submitProperty(event) {
     const propertyList =
         document.getElementById("propertyList");
 
-
     if (
         title === "" ||
         type === "" ||
@@ -621,12 +620,10 @@ function submitProperty(event) {
         return;
     }
 
-
     const newProperty =
         document.createElement("div");
 
     newProperty.className = "property";
-
 
     newProperty.innerHTML = `
 
@@ -658,21 +655,22 @@ function submitProperty(event) {
                 📞 ${phone}
             </p>
 
+            <button type="button"
+                onclick="alert('Property: ${title}\\nLocation: ${location}\\nPrice: ${price} RWF')">
+                View Property
+            </button>
+
         </div>
 
     `;
 
-
     propertyList.appendChild(newProperty);
 
-
     alert("Property submitted successfully!");
-
 
     document
         .getElementById("propertyForm")
         .reset();
-
 
     newProperty.scrollIntoView({
         behavior: "smooth",
