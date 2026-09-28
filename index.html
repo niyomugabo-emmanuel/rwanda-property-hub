@@ -677,7 +677,6 @@ function searchProperties() {
     });
 }
 
-
 function submitProperty(event) {
 
     event.preventDefault();
@@ -730,7 +729,7 @@ function submitProperty(event) {
 
             <p>📞 ${phone}</p>
 
-            <button type="button" onclick="viewProperty('${title}', '${location}', '${Number(price).toLocaleString()}')">
+            <button type="button" class="view-btn">
                 View Property
             </button>
 
@@ -738,6 +737,12 @@ function submitProperty(event) {
     `;
 
     propertyList.appendChild(newProperty);
+
+    const viewButton = newProperty.querySelector(".view-btn");
+
+    viewButton.addEventListener("click", function() {
+        viewProperty(title, location, Number(price).toLocaleString());
+    });
 
     alert("Property submitted successfully!");
 
@@ -748,9 +753,6 @@ function submitProperty(event) {
         block: "center"
     });
 }
-
-
-function viewProperty(title, location, price) {
 
     alert(
         "Property: " + title +
