@@ -262,19 +262,12 @@ footer {
     <div class="search-box">
 
         <select id="propertyType">
-
-            <option value="Property Type">
-                Property Type
-            </option>
-
+            <option value="Property Type">Property Type</option>
             <option value="House">House</option>
             <option value="Land">Land</option>
             <option value="Apartment">Apartment</option>
-            <option value="Commercial Property">
-                Commercial Property
-            </option>
+            <option value="Commercial Property">Commercial Property</option>
             <option value="Farm">Farm</option>
-
         </select>
 
         <input
@@ -283,10 +276,7 @@ footer {
             placeholder="Enter location e.g. Kigali"
         >
 
-        <button
-            type="button"
-            onclick="searchProperties()"
-        >
+        <button type="button" onclick="searchProperties()">
             Search
         </button>
 
@@ -495,11 +485,9 @@ footer {
                 <option value="House">House</option>
                 <option value="Land">Land</option>
                 <option value="Apartment">Apartment</option>
-
                 <option value="Commercial Property">
                     Commercial Property
                 </option>
-
                 <option value="Farm">Farm</option>
                 <option value="Other">Other</option>
 
@@ -612,13 +600,9 @@ footer {
 
 <footer>
 
-    <p>
-        © 2026 Rwanda Property Hub. All rights reserved.
-    </p>
+    <p>© 2026 Rwanda Property Hub. All rights reserved.</p>
 
-    <p>
-        Connecting property sellers and buyers in Rwanda.
-    </p>
+    <p>Connecting property sellers and buyers in Rwanda.</p>
 
 </footer>
 
@@ -631,11 +615,9 @@ function searchProperties() {
         document.getElementById("propertyType").value;
 
     const location =
-        document
-            .getElementById("location")
-            .value
-            .toLowerCase()
-            .trim();
+        document.getElementById("location").value
+        .toLowerCase()
+        .trim();
 
     const properties =
         document.querySelectorAll("#propertyList .property");
@@ -653,15 +635,10 @@ function searchProperties() {
             location === "" ||
             text.includes(location);
 
-        if (typeMatch && locationMatch) {
-
-            property.style.display = "block";
-
-        } else {
-
-            property.style.display = "none";
-
-        }
+        property.style.display =
+            typeMatch && locationMatch
+            ? "block"
+            : "none";
 
     });
 
@@ -678,51 +655,30 @@ function submitProperty(event) {
     event.preventDefault();
 
     const title =
-        document
-            .getElementById("propertyTitle")
-            .value
-            .trim();
+        document.getElementById("propertyTitle").value.trim();
 
     const type =
-        document
-            .getElementById("postPropertyType")
-            .value;
+        document.getElementById("postPropertyType").value;
 
     const location =
-        document
-            .getElementById("postLocation")
-            .value
-            .trim();
+        document.getElementById("postLocation").value.trim();
 
     const price =
-        document
-            .getElementById("postPrice")
-            .value;
+        document.getElementById("postPrice").value;
 
     const bedrooms =
-        document
-            .getElementById("postBedrooms")
-            .value;
+        document.getElementById("postBedrooms").value;
 
     const description =
-        document
-            .getElementById("postDescription")
-            .value
-            .trim();
+        document.getElementById("postDescription").value.trim();
 
     const name =
-        document
-            .getElementById("postName")
-            .value
-            .trim();
+        document.getElementById("postName").value.trim();
 
     const phone =
-        document
-            .getElementById("postPhone")
-            .value
-            .trim();
+        document.getElementById("postPhone").value.trim();
 
-    const photoInput =
+    const photo =
         document.getElementById("postPhoto");
 
     const propertyList =
@@ -751,29 +707,28 @@ function submitProperty(event) {
     newProperty.className = "property";
 
 
-    let photoHTML = "";
+    let imageHTML = "";
 
     if (
-        photoInput.files &&
-        photoInput.files.length > 0
+        photo.files &&
+        photo.files.length > 0
     ) {
 
         const imageURL =
-            URL.createObjectURL(photoInput.files[0]);
+            URL.createObjectURL(photo.files[0]);
 
-        photoHTML = `
+        imageHTML = `
             <img
                 src="${imageURL}"
                 alt="${title}"
             >
         `;
-
     }
 
 
     newProperty.innerHTML = `
 
-        ${photoHTML}
+        ${imageHTML}
 
         <div class="property-content">
 
@@ -805,7 +760,11 @@ function submitProperty(event) {
 
             <button
                 type="button"
-                onclick="viewProperty('${title.replace(/'/g, "\\'")}', '${location.replace(/'/g, "\\'")}', '${Number(price).toLocaleString()}')"
+                onclick="viewProperty(
+                    '${title.replace(/'/g, "\\'")}',
+                    '${location.replace(/'/g, "\\'")}',
+                    '${Number(price).toLocaleString()}'
+                )"
             >
                 View Property
             </button>
@@ -829,13 +788,13 @@ function submitProperty(event) {
         .reset();
 
 
+    alert("Property submitted successfully!");
+
+
     newProperty.scrollIntoView({
         behavior: "smooth",
         block: "center"
     });
-
-
-    alert("Property submitted successfully!");
 
 }
 
@@ -843,12 +802,9 @@ function submitProperty(event) {
 function viewProperty(title, location, price) {
 
     alert(
-        "Property: " +
-        title +
-        "\nLocation: " +
-        location +
-        "\nPrice: RWF " +
-        price
+        "Property: " + title +
+        "\nLocation: " + location +
+        "\nPrice: RWF " + price
     );
 
 }
