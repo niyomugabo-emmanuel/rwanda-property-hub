@@ -649,41 +649,47 @@ function searchProperties() {
         });
 }
 
+<script>
+
+function searchProperties() {
+    const type = document.getElementById("propertyType").value;
+    const location = document.getElementById("location").value.toLowerCase().trim();
+
+    const properties = document.querySelectorAll("#propertyList .property");
+
+    properties.forEach(function(property) {
+        const text = property.innerText.toLowerCase();
+
+        const typeMatch =
+            type === "Property Type" ||
+            text.includes(type.toLowerCase());
+
+        const locationMatch =
+            location === "" ||
+            text.includes(location);
+
+        property.style.display =
+            typeMatch && locationMatch ? "block" : "none";
+    });
+
+    document.getElementById("properties").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
 
 function submitProperty(event) {
 
     event.preventDefault();
 
-    const title =
-        document.getElementById("propertyTitle").value.trim();
-
-    const type =
-        document.getElementById("postPropertyType").value;
-
-    const location =
-        document.getElementById("postLocation").value.trim();
-
-    const price =
-        document.getElementById("postPrice").value;
-
-    const bedrooms =
-        document.getElementById("postBedrooms").value;
-
-    const description =
-        document.getElementById("postDescription").value.trim();
-
-    const name =
-        document.getElementById("postName").value.trim();
-
-    const phone =
-        document.getElementById("postPhone").value.trim();
-
-    const photo =
-        document.getElementById("postPhoto");
-
-    const propertyList =
-        document.getElementById("propertyList");
-
+    const title = document.getElementById("propertyTitle").value.trim();
+    const type = document.getElementById("postPropertyType").value;
+    const location = document.getElementById("postLocation").value.trim();
+    const price = document.getElementById("postPrice").value;
+    const bedrooms = document.getElementById("postBedrooms").value;
+    const description = document.getElementById("postDescription").value.trim();
+    const name = document.getElementById("postName").value.trim();
+    const phone = document.getElementById("postPhone").value.trim();
 
     if (
         title === "" ||
@@ -694,42 +700,16 @@ function submitProperty(event) {
         name === "" ||
         phone === ""
     ) {
-
         alert("Please fill in all required fields.");
-
         return;
     }
 
+    const propertyList = document.getElementById("propertyList");
 
-    const newProperty =
-        document.createElement("div");
-
+    const newProperty = document.createElement("div");
     newProperty.className = "property";
 
-
-    let imageHTML = "";
-
-    if (
-        photo.files &&
-        photo.files.length > 0
-    ) {
-
-        const imageURL =
-            URL.createObjectURL(photo.files[0]);
-
-        imageHTML = `
-            <img
-                src="${imageURL}"
-                alt="${title}"
-            >
-        `;
-    }
-
-
     newProperty.innerHTML = `
-
-        ${imageHTML}
-
         <div class="property-content">
 
             <h3>${title}</h3>
@@ -742,60 +722,31 @@ function submitProperty(event) {
                 RWF ${Number(price).toLocaleString()}
             </div>
 
-            <p>
-                🛏️ ${bedrooms || "Not specified"} Bedrooms
-            </p>
+            <p>🛏️ ${bedrooms || "Not specified"} Bedrooms</p>
 
-            <p>
-                ${description}
-            </p>
+            <p>${description}</p>
 
-            <p>
-                👤 Contact: ${name}
-            </p>
+            <p>👤 Contact: ${name}</p>
 
-            <p>
-                📞 ${phone}
-            </p>
+            <p>📞 ${phone}</p>
 
-            <button
-                type="button"
-                onclick="viewProperty(
-                    '${title.replace(/'/g, "\\'")}',
-                    '${location.replace(/'/g, "\\'")}',
-                    '${Number(price).toLocaleString()}'
-                )"
-            >
+            <button type="button" onclick="viewProperty('${title}', '${location}', '${Number(price).toLocaleString()}')">
                 View Property
             </button>
 
         </div>
-
     `;
-
 
     propertyList.appendChild(newProperty);
 
-
-    localStorage.setItem(
-        "properties",
-        propertyList.innerHTML
-    );
-
-
-    document
-        .getElementById("propertyForm")
-        .reset();
-
-
     alert("Property submitted successfully!");
 
+    document.getElementById("propertyForm").reset();
 
     newProperty.scrollIntoView({
         behavior: "smooth",
         block: "center"
     });
-
 }
 
 
@@ -809,22 +760,8 @@ function viewProperty(title, location, price) {
 
 }
 
-
-window.addEventListener("load", function() {
-
-    const savedProperties =
-        localStorage.getItem("properties");
-
-    if (savedProperties) {
-
-        document.getElementById("propertyList").innerHTML =
-            savedProperties;
-
-    }
-
-});
-
 </script>
+
 
 </body>
 </html>
