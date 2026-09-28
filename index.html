@@ -573,7 +573,15 @@ function searchProperties() {
         .scrollIntoView({ behavior: "smooth" });
 }
 
+window.addEventListener("load", function () {
 
+    const savedProperties = localStorage.getItem("properties");
+
+    if (savedProperties) {
+        document.getElementById("propertyList").innerHTML = savedProperties;
+    }
+
+});
 function submitProperty(event) {
 
     event.preventDefault();
@@ -665,7 +673,7 @@ function submitProperty(event) {
     `;
 
     propertyList.appendChild(newProperty);
-
+localStorage.setItem("properties", propertyList.innerHTML);
     alert("Property submitted successfully!");
 
     document
