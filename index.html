@@ -1131,7 +1131,67 @@ document
     );
 
 
+function loadProperties() {
+    const savedProperties =
+        JSON.parse(localStorage.getItem("rwandaProperties")) || [];
 
+    const propertyList =
+        document.getElementById("propertyList");
+
+    savedProperties.forEach(function(property) {
+        const newProperty =
+            document.createElement("div");
+
+        newProperty.className = "property";
+
+        newProperty.innerHTML = `
+            <div class="property-content">
+                <h3>${property.title}</h3>
+                <p>🏠 ${property.type}</p>
+                <p>📍 ${property.location}</p>
+                <div class="price">
+                    RWF ${Number(property.price).toLocaleString()}
+                </div>
+                <p>🛏️ ${property.bedrooms || "Not specified"} Bedrooms</p>
+                <p>${property.description}</p>
+                <p>👤 Contact: ${property.name}</p>
+                <p>📞 ${property.phone}</p>
+                <button type="button" class="view-new-property">
+                    View Property
+                </button>
+            </div>
+        `;
+
+        propertyList.appendChild(newProperty);
+const savedProperties =
+    JSON.parse(localStorage.getItem("rwandaProperties")) || [];
+
+savedProperties.push({
+    title: title,
+    type: type,
+    location: location,
+    price: price,
+    bedrooms: bedrooms,
+    description: description,
+    name: name,
+    phone: phone
+});
+
+localStorage.setItem(
+    "rwandaProperties",
+    JSON.stringify(savedProperties)
+);
+        newProperty
+            .querySelector(".view-new-property")
+            .addEventListener("click", function() {
+                viewProperty(
+                    property.title,
+                    property.location,
+                    Number(property.price).toLocaleString()
+                );
+            });
+    });
+}
 function submitProperty(event) {
 
 
@@ -1323,7 +1383,7 @@ function submitProperty(event) {
 
 
 }
-
+loadProperties();
 
 </script>
 
