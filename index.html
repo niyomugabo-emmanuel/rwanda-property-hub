@@ -1,12 +1,17 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Rwanda Property Hub</title>
 
+
 <style>
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -14,10 +19,12 @@
     font-family: Arial, sans-serif;
 }
 
+
 body {
     background: #f5f7f6;
     color: #222;
 }
+
 
 header {
     background: #087f5b;
@@ -28,10 +35,12 @@ header {
     align-items: center;
 }
 
+
 .logo {
     font-size: 24px;
     font-weight: bold;
 }
+
 
 nav a {
     color: white;
@@ -39,236 +48,403 @@ nav a {
     margin-left: 20px;
 }
 
+
 .hero {
     background:
         linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
         url("https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1600&q=80");
+
     background-size: cover;
     background-position: center;
+
     padding: 90px 20px;
+
     text-align: center;
+
     color: white;
 }
+
 
 .hero h1 {
     font-size: 42px;
     margin-bottom: 15px;
 }
 
+
 .hero p {
     font-size: 18px;
     margin-bottom: 30px;
 }
 
+
 .search-box {
     background: white;
     padding: 20px;
+
     max-width: 850px;
+
     margin: auto;
+
     border-radius: 10px;
+
     display: flex;
+
     gap: 10px;
+
     flex-wrap: wrap;
 }
 
+
 .search-box select,
 .search-box input {
+
     flex: 1;
+
     min-width: 180px;
+
     padding: 13px;
+
     border: 1px solid #ddd;
+
     border-radius: 6px;
 }
 
+
 button {
+
     background: #087f5b;
+
     color: white;
+
     border: none;
+
     padding: 13px 22px;
+
     border-radius: 6px;
+
     cursor: pointer;
+
     font-weight: bold;
 }
+
 
 button:hover {
     background: #056b4c;
 }
 
+
 .container {
+
     width: 90%;
+
     max-width: 1100px;
+
     margin: 50px auto;
 }
 
+
 .section-title {
+
     text-align: center;
+
     margin-bottom: 30px;
 }
 
+
 .categories {
+
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(160px, 1fr));
+
     gap: 15px;
 }
 
+
 .category {
+
     background: white;
+
     padding: 25px;
+
     text-align: center;
+
     border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,.08);
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.08);
 }
+
 
 .category h3 {
     margin-top: 10px;
 }
 
+
 .properties {
+
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(250px, 1fr));
+
     gap: 20px;
 }
 
+
 .property {
+
     background: white;
+
     border-radius: 10px;
+
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,.1);
+
+    box-shadow:
+        0 2px 8px rgba(0,0,0,.1);
 }
 
+
 .property img {
+
     width: 100%;
+
     height: 180px;
+
     object-fit: cover;
 }
 
+
 .property-content {
+
     padding: 18px;
 }
 
+
 .property-content h3 {
+
     margin-bottom: 8px;
 }
 
+
 .property-content p {
+
     margin: 8px 0;
 }
 
+
 .price {
+
     color: #087f5b;
+
     font-size: 20px;
+
     font-weight: bold;
+
     margin: 10px 0;
 }
 
+
 .sell-section {
+
     background: #087f5b;
+
     color: white;
+
     padding: 50px 20px;
+
     text-align: center;
+
     margin-top: 50px;
 }
 
+
 .sell-section h2 {
+
     margin-bottom: 15px;
 }
 
+
 .sell-section button {
+
     background: white;
+
     color: #087f5b;
+
     margin-top: 20px;
 }
 
+
 #post-property {
+
     background: white;
+
     padding: 30px;
+
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0,0,0,.1);
+
+    box-shadow:
+        0 2px 10px rgba(0,0,0,.1);
 }
 
+
 .form-group {
+
     margin-bottom: 18px;
 }
 
+
 .form-group label {
+
     display: block;
+
     margin-bottom: 7px;
+
     font-weight: bold;
 }
+
 
 .form-group input,
 .form-group select,
 .form-group textarea {
+
     width: 100%;
+
     padding: 13px;
+
     border: 1px solid #ccc;
+
     border-radius: 6px;
 }
 
+
 .form-group textarea {
+
     height: 120px;
+
     resize: vertical;
 }
 
+
 footer {
+
     background: #222;
+
     color: white;
+
     text-align: center;
+
     padding: 25px;
+
     margin-top: 50px;
 }
+
 
 @media(max-width:700px) {
 
     header {
+
         flex-direction: column;
+
         gap: 15px;
     }
 
+
     nav a {
+
         margin: 5px;
     }
 
+
     .hero h1 {
+
         font-size: 30px;
     }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <header>
 
-    <div class="logo">🏠 Rwanda Property Hub</div>
+    <div class="logo">
+        🏠 Rwanda Property Hub
+    </div>
+
 
     <nav>
-        <a href="#home">Home</a>
-        <a href="#properties">Properties</a>
-        <a href="#post-property">Sell Property</a>
+
+        <a href="#home">
+            Home
+        </a>
+
+        <a href="#properties">
+            Properties
+        </a>
+
+        <a href="#post-property">
+            Sell Property
+        </a>
+
     </nav>
 
 </header>
 
 
+
 <section class="hero" id="home">
 
-    <h1>Find Your Property in Rwanda</h1>
+
+    <h1>
+        Find Your Property in Rwanda
+    </h1>
+
 
     <p>
         Find houses, land, apartments and commercial properties across Rwanda.
     </p>
 
+
+
     <div class="search-box">
 
+
         <select id="propertyType">
-            <option value="Property Type">Property Type</option>
-            <option value="House">House</option>
-            <option value="Land">Land</option>
-            <option value="Apartment">Apartment</option>
-            <option value="Commercial Property">Commercial Property</option>
-            <option value="Farm">Farm</option>
+
+            <option value="Property Type">
+                Property Type
+            </option>
+
+            <option value="House">
+                House
+            </option>
+
+            <option value="Land">
+                Land
+            </option>
+
+            <option value="Apartment">
+                Apartment
+            </option>
+
+            <option value="Commercial Property">
+                Commercial Property
+            </option>
+
+            <option value="Farm">
+                Farm
+            </option>
+
         </select>
+
+
 
         <input
             type="text"
@@ -276,192 +452,354 @@ footer {
             placeholder="Enter location e.g. Kigali"
         >
 
-        <button type="button" onclick="searchProperties()">
+
+
+        <button
+            type="button"
+            onclick="searchProperties()"
+        >
+
             Search
+
         </button>
 
+
     </div>
+
 
 </section>
 
 
+
 <div class="container">
+
 
     <h2 class="section-title">
         Browse Property Categories
     </h2>
 
+
+
     <div class="categories">
 
+
         <div class="category">
+
             🏠
-            <h3>Houses</h3>
+
+            <h3>
+                Houses
+            </h3>
+
         </div>
 
+
+
         <div class="category">
+
             🌳
-            <h3>Land</h3>
+
+            <h3>
+                Land
+            </h3>
+
         </div>
 
+
+
         <div class="category">
+
             🏢
-            <h3>Apartments</h3>
+
+            <h3>
+                Apartments
+            </h3>
+
         </div>
 
+
+
         <div class="category">
+
             🏬
-            <h3>Commercial</h3>
+
+            <h3>
+                Commercial
+            </h3>
+
         </div>
 
+
+
         <div class="category">
+
             🌾
-            <h3>Farms</h3>
+
+            <h3>
+                Farms
+            </h3>
+
         </div>
 
+
+
         <div class="category">
+
             📍
-            <h3>Other</h3>
+
+            <h3>
+                Other
+            </h3>
+
         </div>
+
 
     </div>
+
 
 </div>
 
 
+
 <div class="container" id="properties">
+
 
     <h2 class="section-title">
         Featured Properties
     </h2>
 
-    <div class="properties" id="propertyList">
+
+
+    <div
+        class="properties"
+        id="propertyList"
+    >
+
+
 
         <div class="property">
+
 
             <img
                 src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
                 alt="Modern House"
             >
 
+
+
             <div class="property-content">
 
-                <h3>Modern House in Kigali</h3>
 
-                <p>🏠 House</p>
+                <h3>
+                    Modern House in Kigali
+                </h3>
 
-                <p>📍 Kigali, Rwanda</p>
+
+                <p>
+                    🏠 House
+                </p>
+
+
+                <p>
+                    📍 Kigali, Rwanda
+                </p>
+
 
                 <div class="price">
                     RWF 85,000,000
                 </div>
 
+
+
                 <button
                     type="button"
-                    onclick="viewProperty('Modern House in Kigali', 'Kigali, Rwanda', '85,000,000')"
+                    onclick="viewProperty(
+                        'Modern House in Kigali',
+                        'Kigali, Rwanda',
+                        '85,000,000'
+                    )"
                 >
+
                     View Property
+
                 </button>
 
+
             </div>
+
 
         </div>
 
 
+
+
         <div class="property">
+
 
             <img
                 src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80"
                 alt="Land for Sale"
             >
 
+
+
             <div class="property-content">
 
-                <h3>Land for Sale</h3>
 
-                <p>🌳 Land</p>
+                <h3>
+                    Land for Sale
+                </h3>
 
-                <p>📍 Bugesera, Rwanda</p>
+
+                <p>
+                    🌳 Land
+                </p>
+
+
+                <p>
+                    📍 Bugesera, Rwanda
+                </p>
+
 
                 <div class="price">
                     RWF 25,000,000
                 </div>
 
+
+
                 <button
                     type="button"
-                    onclick="viewProperty('Land for Sale', 'Bugesera, Rwanda', '25,000,000')"
+                    onclick="viewProperty(
+                        'Land for Sale',
+                        'Bugesera, Rwanda',
+                        '25,000,000'
+                    )"
                 >
+
                     View Property
+
                 </button>
 
+
             </div>
+
 
         </div>
 
 
+
+
         <div class="property">
+
 
             <img
                 src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80"
                 alt="Luxury Apartment"
             >
 
+
+
             <div class="property-content">
 
-                <h3>Luxury Apartment</h3>
 
-                <p>🏢 Apartment</p>
+                <h3>
+                    Luxury Apartment
+                </h3>
 
-                <p>📍 Kigali, Rwanda</p>
+
+                <p>
+                    🏢 Apartment
+                </p>
+
+
+                <p>
+                    📍 Kigali, Rwanda
+                </p>
+
 
                 <div class="price">
                     RWF 120,000,000
                 </div>
 
+
+
                 <button
                     type="button"
-                    onclick="viewProperty('Luxury Apartment', 'Kigali, Rwanda', '120,000,000')"
+                    onclick="viewProperty(
+                        'Luxury Apartment',
+                        'Kigali, Rwanda',
+                        '120,000,000'
+                    )"
                 >
+
                     View Property
+
                 </button>
+
 
             </div>
 
+
         </div>
 
+
     </div>
+
 
 </div>
 
 
+
 <section class="sell-section">
 
-    <h2>Want to Sell Your Property?</h2>
+
+    <h2>
+        Want to Sell Your Property?
+    </h2>
+
 
     <p>
         List your property on Rwanda Property Hub and reach potential buyers.
     </p>
 
+
+
     <button
         type="button"
         onclick="document.getElementById('post-property').scrollIntoView({behavior:'smooth'})"
     >
+
         Post Your Property
+
     </button>
+
 
 </section>
 
 
-<div class="container" id="post-property">
+
+<div
+    class="container"
+    id="post-property"
+>
+
 
     <h2 class="section-title">
         Post Your Property
     </h2>
 
+
+
     <form id="propertyForm">
+
 
         <div class="form-group">
 
-            <label>Property Title</label>
+
+            <label>
+                Property Title
+            </label>
+
 
             <input
                 type="text"
@@ -469,36 +807,73 @@ footer {
                 placeholder="Example: 4 Bedroom House for Sale"
             >
 
+
         </div>
+
+
 
 
         <div class="form-group">
 
-            <label>Property Type</label>
+
+            <label>
+                Property Type
+            </label>
+
 
             <select id="postPropertyType">
+
 
                 <option value="">
                     Select Property Type
                 </option>
 
-                <option value="House">House</option>
-                <option value="Land">Land</option>
-                <option value="Apartment">Apartment</option>
+
+                <option value="House">
+                    House
+                </option>
+
+
+                <option value="Land">
+                    Land
+                </option>
+
+
+                <option value="Apartment">
+                    Apartment
+                </option>
+
+
                 <option value="Commercial Property">
                     Commercial Property
                 </option>
-                <option value="Farm">Farm</option>
-                <option value="Other">Other</option>
+
+
+                <option value="Farm">
+                    Farm
+                </option>
+
+
+                <option value="Other">
+                    Other
+                </option>
+
 
             </select>
+
 
         </div>
 
 
+
+
         <div class="form-group">
 
-            <label>Location</label>
+
+            <label>
+                Location
+            </label>
+
 
             <input
                 type="text"
@@ -506,12 +881,19 @@ footer {
                 placeholder="District, Sector, Cell"
             >
 
+
         </div>
+
+
 
 
         <div class="form-group">
 
-            <label>Price (RWF)</label>
+
+            <label>
+                Price (RWF)
+            </label>
+
 
             <input
                 type="number"
@@ -519,12 +901,19 @@ footer {
                 placeholder="Example: 50000000"
             >
 
+
         </div>
+
+
 
 
         <div class="form-group">
 
-            <label>Number of Bedrooms</label>
+
+            <label>
+                Number of Bedrooms
+            </label>
+
 
             <input
                 type="number"
@@ -532,24 +921,38 @@ footer {
                 placeholder="Example: 4"
             >
 
+
         </div>
+
+
 
 
         <div class="form-group">
 
-            <label>Property Description</label>
+
+            <label>
+                Property Description
+            </label>
+
 
             <textarea
                 id="postDescription"
                 placeholder="Describe your property..."
             ></textarea>
 
+
         </div>
+
+
 
 
         <div class="form-group">
 
-            <label>Your Name</label>
+
+            <label>
+                Your Name
+            </label>
+
 
             <input
                 type="text"
@@ -557,12 +960,19 @@ footer {
                 placeholder="Enter your name"
             >
 
+
         </div>
+
+
 
 
         <div class="form-group">
 
-            <label>Phone Number</label>
+
+            <label>
+                Phone Number
+            </label>
+
 
             <input
                 type="tel"
@@ -570,12 +980,19 @@ footer {
                 placeholder="+250..."
             >
 
+
         </div>
+
+
 
 
         <div class="form-group">
 
-            <label>Property Photo</label>
+
+            <label>
+                Property Photo
+            </label>
+
 
             <input
                 type="file"
@@ -583,106 +1000,245 @@ footer {
                 accept="image/*"
             >
 
+
         </div>
 
 
+
+
         <button
-            type="button"
-            onclick="submitProperty(event)"
+            type="submit"
         >
+
             Submit Property
+
         </button>
 
+
     </form>
+
 
 </div>
 
 
+
 <footer>
 
-    <p>© 2026 Rwanda Property Hub. All rights reserved.</p>
 
-    <p>Connecting property sellers and buyers in Rwanda.</p>
+    <p>
+        © 2026 Rwanda Property Hub. All rights reserved.
+    </p>
+
+
+    <p>
+        Connecting property sellers and buyers in Rwanda.
+    </p>
+
 
 </footer>
 
 
+
 <script>
+
 
 function searchProperties() {
 
+
     const type =
         document.getElementById("propertyType").value;
+
 
     const location =
         document.getElementById("location").value
         .toLowerCase()
         .trim();
 
+
     const properties =
-        document.querySelectorAll("#propertyList .property");
+        document.querySelectorAll(
+            "#propertyList .property"
+        );
+
 
     properties.forEach(function(property) {
 
+
         const text =
             property.innerText.toLowerCase();
+
 
         const typeMatch =
             type === "Property Type" ||
             text.includes(type.toLowerCase());
 
+
         const locationMatch =
             location === "" ||
             text.includes(location);
 
-        property.style.display =
-            typeMatch && locationMatch
-            ? "block"
-            : "none";
+
+        if (typeMatch && locationMatch) {
+
+            property.style.display = "block";
+
+        } else {
+
+            property.style.display = "none";
+
+        }
+
 
     });
+
 
     document
         .getElementById("properties")
         .scrollIntoView({
             behavior: "smooth"
         });
+
 }
 
-<script>
+
+
+function viewProperty(
+    title,
+    location,
+    price
+) {
+
+
+    alert(
+
+        "Property: " + title +
+
+        "\nLocation: " + location +
+
+        "\nPrice: RWF " + price
+
+    );
+
+}
+
+
+
+document
+    .getElementById("propertyForm")
+    .addEventListener(
+        "submit",
+        submitProperty
+    );
+
+
 
 function submitProperty(event) {
 
+
     event.preventDefault();
 
-    const title = document.getElementById("propertyTitle").value.trim();
-    const type = document.getElementById("postPropertyType").value;
-    const location = document.getElementById("postLocation").value.trim();
-    const price = document.getElementById("postPrice").value;
-    const bedrooms = document.getElementById("postBedrooms").value;
-    const description = document.getElementById("postDescription").value.trim();
-    const name = document.getElementById("postName").value.trim();
-    const phone = document.getElementById("postPhone").value.trim();
+
+    const title =
+        document
+        .getElementById("propertyTitle")
+        .value
+        .trim();
+
+
+    const type =
+        document
+        .getElementById("postPropertyType")
+        .value;
+
+
+    const location =
+        document
+        .getElementById("postLocation")
+        .value
+        .trim();
+
+
+    const price =
+        document
+        .getElementById("postPrice")
+        .value;
+
+
+    const bedrooms =
+        document
+        .getElementById("postBedrooms")
+        .value;
+
+
+    const description =
+        document
+        .getElementById("postDescription")
+        .value
+        .trim();
+
+
+    const name =
+        document
+        .getElementById("postName")
+        .value
+        .trim();
+
+
+    const phone =
+        document
+        .getElementById("postPhone")
+        .value
+        .trim();
+
 
     if (
+
         title === "" ||
+
         type === "" ||
+
         location === "" ||
+
         price === "" ||
+
         description === "" ||
+
         name === "" ||
+
         phone === ""
+
     ) {
-        alert("Please fill in all required fields.");
+
+
+        alert(
+            "Please fill in all required fields."
+        );
+
+
         return;
+
     }
 
-    const propertyList = document.getElementById("propertyList");
 
-    const newProperty = document.createElement("div");
-    newProperty.className = "property";
+
+    const propertyList =
+        document.getElementById(
+            "propertyList"
+        );
+
+
+
+    const newProperty =
+        document.createElement("div");
+
+
+    newProperty.className =
+        "property";
+
+
 
     newProperty.innerHTML = `
+
         <div class="property-content">
 
             <h3>${title}</h3>
@@ -695,48 +1251,98 @@ function submitProperty(event) {
                 RWF ${Number(price).toLocaleString()}
             </div>
 
-            <p>🛏️ ${bedrooms || "Not specified"} Bedrooms</p>
+            <p>
+                🛏️ ${bedrooms || "Not specified"}
+                Bedrooms
+            </p>
 
-            <p>${description}</p>
+            <p>
+                ${description}
+            </p>
 
-            <p>👤 Contact: ${name}</p>
+            <p>
+                👤 Contact: ${name}
+            </p>
 
-            <p>📞 ${phone}</p>
+            <p>
+                📞 ${phone}
+            </p>
 
-            <button type="button" class="view-btn">
+            <button
+                type="button"
+                class="view-new-property"
+            >
                 View Property
             </button>
 
         </div>
+
     `;
 
-    propertyList.appendChild(newProperty);
 
-    const viewButton = newProperty.querySelector(".view-btn");
 
-    viewButton.addEventListener("click", function() {
+    propertyList.appendChild(
+        newProperty
+    );
 
-        alert(
-            "Property: " + title +
-            "\nLocation: " + location +
-            "\nPrice: RWF " + Number(price).toLocaleString()
+
+
+    const newViewButton =
+        newProperty.querySelector(
+            ".view-new-property"
         );
 
-    });
 
-    alert("Property submitted successfully!");
 
-    document.getElementById("propertyForm").reset();
+    newViewButton.addEventListener(
+        "click",
+        function() {
+
+
+            viewProperty(
+
+                title,
+
+                location,
+
+                Number(price)
+                    .toLocaleString()
+
+            );
+
+
+        }
+    );
+
+
+
+    alert(
+        "Property submitted successfully!"
+    );
+
+
+
+    document
+        .getElementById("propertyForm")
+        .reset();
+
+
 
     newProperty.scrollIntoView({
+
         behavior: "smooth",
+
         block: "center"
+
     });
+
+
 }
+
 
 </script>
 
 
-
 </body>
+
 </html>
