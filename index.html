@@ -651,32 +651,6 @@ function searchProperties() {
 
 <script>
 
-function searchProperties() {
-    const type = document.getElementById("propertyType").value;
-    const location = document.getElementById("location").value.toLowerCase().trim();
-
-    const properties = document.querySelectorAll("#propertyList .property");
-
-    properties.forEach(function(property) {
-        const text = property.innerText.toLowerCase();
-
-        const typeMatch =
-            type === "Property Type" ||
-            text.includes(type.toLowerCase());
-
-        const locationMatch =
-            location === "" ||
-            text.includes(location);
-
-        property.style.display =
-            typeMatch && locationMatch ? "block" : "none";
-    });
-
-    document.getElementById("properties").scrollIntoView({
-        behavior: "smooth"
-    });
-}
-
 function submitProperty(event) {
 
     event.preventDefault();
@@ -741,7 +715,13 @@ function submitProperty(event) {
     const viewButton = newProperty.querySelector(".view-btn");
 
     viewButton.addEventListener("click", function() {
-        viewProperty(title, location, Number(price).toLocaleString());
+
+        alert(
+            "Property: " + title +
+            "\nLocation: " + location +
+            "\nPrice: RWF " + Number(price).toLocaleString()
+        );
+
     });
 
     alert("Property submitted successfully!");
@@ -754,15 +734,8 @@ function submitProperty(event) {
     });
 }
 
-    alert(
-        "Property: " + title +
-        "\nLocation: " + location +
-        "\nPrice: RWF " + price
-    );
-
-}
-
 </script>
+
 
 
 </body>
