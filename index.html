@@ -365,7 +365,7 @@ footer {
 }
 
 </style>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 
@@ -1040,7 +1040,13 @@ footer {
 
 
 <script>
+const SUPABASE_URL = "https://fxvungdbffahfffymibz.supabase.co";
+const SUPABASE_KEY = "sb_publishable_Wt2Ra9SQLGDskX6r7HHrow_ja1Rta0C";
 
+const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
 function searchProperties() {
 
@@ -1194,94 +1200,58 @@ localStorage.setItem(
             });
     });
 }
-function submitProperty(event) {
-
+async function submitProperty(event) {
 
     event.preventDefault();
 
-
-    const title =
-        document
-        .getElementById("propertyTitle")
-        .value
-        .trim();
-
-
-    const type =
-        document
-        .getElementById("postPropertyType")
-        .value;
-
-
-    const location =
-        document
-        .getElementById("postLocation")
-        .value
-        .trim();
-
-
-    const price =
-        document
-        .getElementById("postPrice")
-        .value;
-
-
-    const bedrooms =
-        document
-        .getElementById("postBedrooms")
-        .value;
-
-
-    const description =
-        document
-        .getElementById("postDescription")
-        .value
-        .trim();
-
-
-    const name =
-        document
-        .getElementById("postName")
-        .value
-        .trim();
-
-
-    const phone =
-        document
-        .getElementById("postPhone")
-        .value
-        .trim();
-
+    const title = document.getElementById("propertyTitle").value.trim();
+    const type = document.getElementById("postPropertyType").value;
+    const location = document.getElementById("postLocation").value.trim();
+    const price = document.getElementById("postPrice").value;
+    const bedrooms = document.getElementById("postBedrooms").value;
+    const description = document.getElementById("postDescription").value.trim();
+    const name = document.getElementById("postName").value.trim();
+    const phone = document.getElementById("postPhone").value.trim();
 
     if (
-
         title === "" ||
-
         type === "" ||
-
         location === "" ||
-
         price === "" ||
-
         description === "" ||
-
         name === "" ||
-
         phone === ""
-
     ) {
-
-
-        alert(
-            "Please fill in all required fields."
-        );
-
-
+        alert("Please fill in all required fields.");
         return;
-
     }
 
+    const { data, error } = await supabaseClient
+        .from("properties")
+        .insert([
+            {
+                title: title,
+                type: type,
+                location: location,
+                price: Number(price),
+                bedrooms: Number(bedrooms) || 0,
+                description: description,
+                name: name,
+                phone: phone
+            }
+        ])
+        .select();
 
+    if (error) {
+        console.error(error);
+        alert("Property was not saved. Please try again.");
+        return;
+    }
+
+    alert("Property submitted successfully!");
+
+    document.querySelector("form").reset();
+}
 
     const propertyList =
         document.getElementById(
