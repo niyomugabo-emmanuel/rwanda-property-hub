@@ -1269,7 +1269,7 @@ async function submitProperty(event) {
 
         console.error("Submit error:", error);
 
-        alert("Property was not saved. Please try again.");
+    alert("SUPABASE INSERT ERROR:\n" + error.message);
 
         return;
     }
