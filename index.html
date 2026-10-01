@@ -10,6 +10,7 @@
 <title>Rwanda Property Hub</title>
 
 
+
 <style>
 
 * {
@@ -1108,44 +1109,41 @@ function searchProperties() {
 
 
 
-function viewProperty(
-    title,
-    location,
-    price
-) {
-
-
+function viewProperty(title, location, price) {
     alert(
-
         "Property: " + title +
-
         "\nLocation: " + location +
-
         "\nPrice: RWF " + price
-
     );
-
 }
-
 
 
 document
     .getElementById("propertyForm")
-    .addEventListener(
-        "submit",
-        submitProperty
-    );
+    .addEventListener("submit", submitProperty);
 
 
-function loadProperties() {
- 
-    const savedProperties =
-        JSON.parse(localStorage.getItem("rwandaProperties")) || [];
+async function loadProperties() {
 
     const propertyList =
         document.getElementById("propertyList");
 
-    savedProperties.forEach(function(property) {
+    propertyList.innerHTML = "";
+
+    const { data: properties, error } =
+        await supabaseClient
+            .from("properties")
+            .select("*")
+            .order("id", { ascending: false });
+
+    if (error) {
+        console.error(error);
+        alert("Could not load properties.");
+        return;
+    }
+
+    properties.forEach(function(property) {
+
         const newProperty =
             document.createElement("div");
 
@@ -1153,65 +1151,83 @@ function loadProperties() {
 
         newProperty.innerHTML = `
             <div class="property-content">
+
                 <h3>${property.title}</h3>
+
                 <p>🏠 ${property.type}</p>
+
                 <p>📍 ${property.location}</p>
+
                 <div class="price">
                     RWF ${Number(property.price).toLocaleString()}
                 </div>
-                <p>🛏️ ${property.bedrooms || "Not specified"} Bedrooms</p>
+
+                <p>
+                    🛏️ ${property.bedrooms || "Not specified"}
+                    Bedrooms
+                </p>
+
                 <p>${property.description}</p>
+
                 <p>👤 Contact: ${property.name}</p>
+
                 <p>📞 ${property.phone}</p>
-                <button type="button" class="view-new-property">
+
+                <button
+                    type="button"
+                    class="view-new-property">
                     View Property
                 </button>
+
             </div>
         `;
 
         propertyList.appendChild(newProperty);
-const savedProperties =
-    JSON.parse(localStorage.getItem("rwandaProperties")) || [];
 
-savedProperties.push({
-    title: title,
-    type: type,
-    location: location,
-    price: price,
-    bedrooms: bedrooms,
-    description: description,
-    name: name,
-    phone: phone
-});
-
-localStorage.setItem(
-    "rwandaProperties",
-    JSON.stringify(savedProperties)
-);
-     alert("Property saved in browser!");
         newProperty
             .querySelector(".view-new-property")
             .addEventListener("click", function() {
+
                 viewProperty(
                     property.title,
                     property.location,
                     Number(property.price).toLocaleString()
                 );
+
             });
+
     });
 }
+
+
 async function submitProperty(event) {
 
     event.preventDefault();
 
-    const title = document.getElementById("propertyTitle").value.trim();
-    const type = document.getElementById("postPropertyType").value;
-    const location = document.getElementById("postLocation").value.trim();
-    const price = document.getElementById("postPrice").value;
-    const bedrooms = document.getElementById("postBedrooms").value;
-    const description = document.getElementById("postDescription").value.trim();
-    const name = document.getElementById("postName").value.trim();
-    const phone = document.getElementById("postPhone").value.trim();
+    const title =
+        document.getElementById("propertyTitle").value.trim();
+
+    const type =
+        document.getElementById("postPropertyType").value;
+
+    const location =
+        document.getElementById("postLocation").value.trim();
+
+    const price =
+        document.getElementById("postPrice").value;
+
+    const bedrooms =
+        document.getElementById("postBedrooms").value;
+
+    const description =
+        document.getElementById("postDescription").value.trim();
+
+    const name =
+        document.getElementById("postName").value.trim();
+
+    const phone =
+        document.getElementById("postPhone").value.trim();
+
 
     if (
         title === "" ||
@@ -1222,147 +1238,41 @@ async function submitProperty(event) {
         name === "" ||
         phone === ""
     ) {
+
         alert("Please fill in all required fields.");
         return;
+
     }
 
-    const { data, error } = await supabaseClient
-        .from("properties")
-        .insert([
-            {
-                title: title,
-                type: type,
-                location: location,
-                price: Number(price),
-                bedrooms: Number(bedrooms) || 0,
-                description: description,
-                name: name,
-                phone: phone
-            }
-        ])
-        .select();
+
+    const { error } =
+        await supabaseClient
+            .from("properties")
+            .insert([
+                {
+                    title: title,
+                    type: type,
+                    location: location,
+                    price: Number(price),
+                    bedrooms: Number(bedrooms) || 0,
+                    description: description,
+                    name: name,
+                    phone: phone
+                }
+            ]);
+
 
     if (error) {
+
         console.error(error);
-        alert("Property was not saved. Please try again.");
+
+        alert(
+            "Property was not saved. Please try again."
+        );
+
         return;
+
     }
-
-    alert("Property submitted successfully!");
-
-    document.querySelector("form").reset();
-}
-
-    const propertyList =
-        document.getElementById(
-            "propertyList"
-        );
-
-
-
-    const newProperty =
-        document.createElement("div");
-
-
-    newProperty.className =
-        "property";
-
-
-
-    newProperty.innerHTML = `
-
-        <div class="property-content">
-
-            <h3>${title}</h3>
-
-            <p>🏠 ${type}</p>
-
-            <p>📍 ${location}</p>
-
-            <div class="price">
-                RWF ${Number(price).toLocaleString()}
-            </div>
-
-            <p>
-                🛏️ ${bedrooms || "Not specified"}
-                Bedrooms
-            </p>
-
-            <p>
-                ${description}
-            </p>
-
-            <p>
-                👤 Contact: ${name}
-            </p>
-
-            <p>
-                📞 ${phone}
-            </p>
-
-            <button
-                type="button"
-                class="view-new-property"
-            >
-                View Property
-            </button>
-
-        </div>
-
-    `;
-
-
-
-    propertyList.appendChild(
-        newProperty
-    );
-const savedProperties =
-        JSON.parse(localStorage.getItem("rwandaProperties")) || [];
-
-    savedProperties.push({
-        title: title,
-        type: type,
-        location: location,
-        price: price,
-        bedrooms: bedrooms,
-        description: description,
-        name: name,
-        phone: phone
-    });
-
-    localStorage.setItem(
-        "rwandaProperties",
-        JSON.stringify(savedProperties)
-    );
-
-
-    const newViewButton =
-        newProperty.querySelector(
-            ".view-new-property"
-        );
-
-
-
-    newViewButton.addEventListener(
-        "click",
-        function() {
-
-
-            viewProperty(
-
-                title,
-
-                location,
-
-                Number(price)
-                    .toLocaleString()
-
-            );
-
-
-        }
-    );
-
 
 
     alert(
@@ -1370,8 +1280,15 @@ const savedProperties =
     );
 
 
+    document
+        .getElementById("propertyForm")
+        .reset();
+
+
+    await loadProperties();
 
 }
+
 
 loadProperties();
 
