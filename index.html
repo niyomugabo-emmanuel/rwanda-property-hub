@@ -1132,14 +1132,16 @@ async function loadProperties() {
             .from("properties")
             .select("*");
 
-    if (error) {
+   if (error) {
+    console.error("Load error:", error);
 
-        console.error("Load error:", error);
+    alert(
+        "SUPABASE ERROR:\n" +
+        error.message
+    );
 
-        alert("Could not load properties.");
-
-        return;
-    }
+    return;
+}
 
 
     properties.forEach(function(property) {
