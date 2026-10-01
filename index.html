@@ -1,6 +1,7 @@
  <!DOCTYPE html>
 <html lang="en">
 
+ 
 <head>
 
 <meta charset="UTF-8">
@@ -1129,7 +1130,7 @@ async function loadProperties() {
 
     const { data: properties, error } =
         await supabaseClient
-            .from("properties")
+            .from("Properties")
             .select("*");
 
    if (error) {
