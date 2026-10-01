@@ -1133,14 +1133,9 @@ async function loadProperties() {
             .from("Properties")
             .select("*");
 
-   if (error) {
-    console.error("Load error:", error);
-
-    alert(
-        "SUPABASE ERROR:\n" +
-        error.message
-    );
-
+if (error) {
+    console.error("Submit error:", error);
+    alert("SUPABASE INSERT ERROR:\n" + error.message);
     return;
 }
 
