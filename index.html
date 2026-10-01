@@ -1109,7 +1109,14 @@ function searchProperties() {
 
 
 <script>
+const SUPABASE_URL = "https://fxvungdbffahfffymibz.supabase.co";
 
+const SUPABASE_KEY = "PASTE_YOUR_PUBLISHABLE_KEY_HERE";
+
+const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 function viewProperty(title, location, price) {
 
     alert(
