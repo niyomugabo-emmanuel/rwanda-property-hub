@@ -1231,7 +1231,8 @@ async function submitProperty(event) {
     const phone =
         document.getElementById("postPhone").value.trim();
 
-
+const photoFile =
+    document.getElementById("postPhoto").files[0];
     if (
         title === "" ||
         type === "" ||
