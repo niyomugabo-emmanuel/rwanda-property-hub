@@ -1250,7 +1250,7 @@ async function submitProperty(event) {
 
     const { error } =
         await supabaseClient
-            .from("properties")
+            .from("Properties")
             .insert([
                 {
                     title: title,
