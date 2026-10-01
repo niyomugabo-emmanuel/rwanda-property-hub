@@ -1148,41 +1148,50 @@ if (error) {
         newProperty.className = "property";
 
 
-        newProperty.innerHTML = `
-            <div class="property-content">
+       
+       
+       newProperty.innerHTML = `
+    <div class="property-content">
 
-                <h3>${property.title}</h3>
+        ${property.image_url ? `
+            <img
+                src="${property.image_url}"
+                alt="${property.title}"
+                style="width:100%; max-height:250px; object-fit:cover; border-radius:10px; margin-bottom:15px;"
+            >
+        ` : ""}
 
-                <p>🏠 ${property.type}</p>
+        <h3>${property.title}</h3>
 
-                <p>📍 ${property.location}</p>
+        <p>🏠 ${property.type}</p>
 
-                <div class="price">
-                    RWF ${Number(property.price).toLocaleString()}
-                </div>
+        <p>📍 ${property.location}</p>
 
-                <p>
-                    🛏️ ${property.bedrooms || "Not specified"}
-                    Bedrooms
-                </p>
+        <div class="price">
+            RWF ${Number(property.price).toLocaleString()}
+        </div>
 
-                <p>${property.description}</p>
+        <p>
+            🛏️ ${property.bedrooms || "Not specified"}
+            Bedrooms
+        </p>
 
-                <p>👤 Contact: ${property.name}</p>
+        <p>${property.description}</p>
 
-                <p>📞 ${property.phone}</p>
+        <p>👤 Contact: ${property.name}</p>
 
-                <button
-                    type="button"
-                    class="view-new-property">
-                    View Property
-                </button>
+        <p>📞 ${property.phone}</p>
 
-            </div>
-        `;
+        <button
+            type="button"
+            class="view-new-property">
+            View Property
+        </button>
 
+    </div>
+`;
 
-        propertyList.appendChild(newProperty);
+     propertyList.appendChild(newProperty);
 
 
         newProperty
