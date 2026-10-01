@@ -1,5 +1,6 @@
  <!DOCTYPE html>
-<html lang="en">
+<html lang="en">.from
+ 
 
  
 <head>
@@ -1249,7 +1250,7 @@ if (photoFile) {
 
     const { error: uploadError } =
         await supabaseClient.storage
-            .from("Property-Image")
+            .from("Property - Image")
             .upload(fileName, photoFile);
 
     if (uploadError) {
@@ -1260,7 +1261,7 @@ if (photoFile) {
 
     const { data: publicUrlData } =
         supabaseClient.storage
-            .from("Property-Image")
+            .from("Property - Image")
             .getPublicUrl(fileName);
 
     imageUrl = publicUrlData.publicUrl;
