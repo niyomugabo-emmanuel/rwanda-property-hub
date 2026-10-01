@@ -1108,19 +1108,17 @@ function searchProperties() {
 }
 
 
+<script>
 
 function viewProperty(title, location, price) {
+
     alert(
         "Property: " + title +
         "\nLocation: " + location +
-        "\nPrice: RWF " + price
+        "\nPrice: RWF " + Number(price).toLocaleString()
     );
+
 }
-
-
-document
-    .getElementById("propertyForm")
-    .addEventListener("submit", submitProperty);
 
 
 async function loadProperties() {
@@ -1133,14 +1131,17 @@ async function loadProperties() {
     const { data: properties, error } =
         await supabaseClient
             .from("properties")
-            .select("*")
-            .order("id", { ascending: false });
+            .select("*");
 
     if (error) {
-        console.error(error);
+
+        console.error("Load error:", error);
+
         alert("Could not load properties.");
+
         return;
     }
+
 
     properties.forEach(function(property) {
 
@@ -1148,6 +1149,7 @@ async function loadProperties() {
             document.createElement("div");
 
         newProperty.className = "property";
+
 
         newProperty.innerHTML = `
             <div class="property-content">
@@ -1182,7 +1184,9 @@ async function loadProperties() {
             </div>
         `;
 
+
         propertyList.appendChild(newProperty);
+
 
         newProperty
             .querySelector(".view-new-property")
@@ -1191,18 +1195,20 @@ async function loadProperties() {
                 viewProperty(
                     property.title,
                     property.location,
-                    Number(property.price).toLocaleString()
+                    property.price
                 );
 
             });
 
     });
+
 }
 
 
 async function submitProperty(event) {
 
     event.preventDefault();
+
 
     const title =
         document.getElementById("propertyTitle").value.trim();
@@ -1240,8 +1246,8 @@ async function submitProperty(event) {
     ) {
 
         alert("Please fill in all required fields.");
-        return;
 
+        return;
     }
 
 
@@ -1264,20 +1270,15 @@ async function submitProperty(event) {
 
     if (error) {
 
-        console.error(error);
+        console.error("Submit error:", error);
 
-        alert(
-            "Property was not saved. Please try again."
-        );
+        alert("Property was not saved. Please try again.");
 
         return;
-
     }
 
 
-    alert(
-        "Property submitted successfully!"
-    );
+    alert("Property submitted successfully!");
 
 
     document
@@ -1290,9 +1291,14 @@ async function submitProperty(event) {
 }
 
 
+document
+    .getElementById("propertyForm")
+    .addEventListener("submit", submitProperty);
+
+
 loadProperties();
 
-</script>
+ </script>
 
 
 </body>
