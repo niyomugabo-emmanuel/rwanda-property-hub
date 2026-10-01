@@ -1232,7 +1232,30 @@ async function submitProperty(event) {
         document.getElementById("postPhone").value.trim();
 
 const photoFile =
-    document.getElementById("postPhoto").files[0];
+    document.getElementById("postPhoto").files[0];let imageUrl = "";
+
+if (photoFile) {
+    const fileName =
+        Date.now() + "_" + photoFile.name;
+
+    const { error: uploadError } =
+        await supabaseClient.storage
+            .from("property-images")
+            .upload(fileName, photoFile);
+
+    if (uploadError) {
+        console.error("Upload error:", uploadError);
+        alert("Photo upload failed: " + uploadError.message);
+        return;
+    }
+
+    const { data: publicUrlData } =
+        supabaseClient.storage
+            .from("property-images")
+            .getPublicUrl(fileName);
+
+    imageUrl = publicUrlData.publicUrl;
+}
     if (
         title === "" ||
         type === "" ||
@@ -1252,6 +1275,7 @@ const photoFile =
     const { error } =
         await supabaseClient
             .from("Properties")
+     
             .insert([
                 {
                     title: title,
@@ -1261,7 +1285,8 @@ const photoFile =
                     bedrooms: Number(bedrooms) || 0,
                     description: description,
                     name: name,
-                    phone: phone
+                    phone: phone,
+                    image_url: imageUrl    
                 }
             ]);
 
