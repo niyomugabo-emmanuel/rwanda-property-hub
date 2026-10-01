@@ -1249,7 +1249,7 @@ if (photoFile) {
 
     const { error: uploadError } =
         await supabaseClient.storage
-            .from("property-images")
+            .from("Property-Image")
             .upload(fileName, photoFile);
 
     if (uploadError) {
@@ -1260,7 +1260,7 @@ if (photoFile) {
 
     const { data: publicUrlData } =
         supabaseClient.storage
-            .from("property-images")
+            .from("Property-Image")
             .getPublicUrl(fileName);
 
     imageUrl = publicUrlData.publicUrl;
