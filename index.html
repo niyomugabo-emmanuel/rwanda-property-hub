@@ -1242,7 +1242,7 @@ function viewProperty(title, location, price, image, type, bedrooms, description
             <p>👤 <strong>Owner:</strong> ${name || "Not provided"}</p>
 
             <p>📞 <strong>Phone:</strong> ${phone || "Not provided"}</p>
-${phone ? `
+${phone && phone !== "Not provided" ? `
     <a
         href="tel:${phone}"
         class="contact-button"
