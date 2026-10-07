@@ -1,4 +1,14 @@
- <!DOCTYPE html>
+viewProperty(
+    property.title,
+    property.location,
+    property.price,
+    property.image_url,
+    property.type,
+    property.bedrooms,
+    property.description,
+    property.name,
+    property.phone
+); <!DOCTYPE html>
 <html lang="en">.from
  
 
@@ -22,7 +32,60 @@
     font-family: Arial, sans-serif;
 }
 
+#propertyPopup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    padding: 20px;
+    box-sizing: border-box;
+}
 
+.property-popup-box {
+    background: white;
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 15px;
+    padding: 25px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.popup-property-image {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.close-popup {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 50%;
+    background: #087f5b;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.popup-price {
+    font-size: 22px;
+    font-weight: bold;
+    color: #087f5b;
+}
 body {
     background: #f5f7f6;
     color: #222;
@@ -1103,114 +1166,66 @@ function filterCategory(category) {
 
 function viewProperty(title, location, price, image, type, bedrooms, description, name, phone) {
 
-    alert(
-        "🏠 PROPERTY DETAILS\n\n" +
-        "Title: " + title +
-        "\nType: " + type +
-        "\nLocation: " + location +
-        "\nPrice: RWF " + Number(price).toLocaleString() +
-        "\nBedrooms: " + (bedrooms || "Not specified") +
-        "\n\nDescription:\n" + (description || "No description") +
-        "\n\n👤 Owner: " + (name || "Not provided") +
-        "\n📞 Phone: " + (phone || "Not provided")
-    );
+    const oldPopup = document.getElementById("propertyPopup");
 
-}
+    if (oldPopup) {
+        oldPopup.remove();
+    }
 
-async function loadProperties() {
+    const popup = document.createElement("div");
 
-    const propertyList =
-        document.getElementById("propertyList");
+    popup.id = "propertyPopup";
 
-    
+    popup.innerHTML = `
+        <div class="property-popup-box">
 
-    const { data: properties, error } =
-        await supabaseClient
-            .from("Properties")
-            .select("*");
+            <button class="close-popup" id="closePropertyPopup">
+                ✕
+            </button>
 
-if (error) {
-    console.error("Submit error:", error);
-    alert("SUPABASE INSERT ERROR:\n" + error.message);
-    return;
-}
+            ${image ? `
+                <img
+                    src="${image}"
+                    alt="${title}"
+                    class="popup-property-image"
+                >
+            ` : ""}
 
+            <h2>${title}</h2>
 
-    properties.forEach(function(property) {
+            <p>🏠 <strong>Type:</strong> ${type}</p>
 
-        const newProperty =
-            document.createElement("div");
+            <p>📍 <strong>Location:</strong> ${location}</p>
 
-        newProperty.className = "property";
+            <p class="popup-price">
+                RWF ${Number(price).toLocaleString()}
+            </p>
 
+            <p>
+                🛏️ <strong>Bedrooms:</strong>
+                ${bedrooms || "Not specified"}
+            </p>
 
-       
-       
-       newProperty.innerHTML = `
-    <div class="property-content">
+            <p>
+                📝 <strong>Description:</strong><br>
+                ${description || "No description"}
+            </p>
 
-        ${property.image_url ? `
-            <img
-                src="${property.image_url}"
-                alt="${property.title}"
-                style="width:100%; max-height:250px; object-fit:cover; border-radius:10px; margin-bottom:15px;"
-            >
-        ` : ""}
+            <p>👤 <strong>Owner:</strong> ${name || "Not provided"}</p>
 
-        <h3>${property.title}</h3>
+            <p>📞 <strong>Phone:</strong> ${phone || "Not provided"}</p>
 
-        <p>🏠 ${property.type}</p>
-
-        <p>📍 ${property.location}</p>
-
-        <div class="price">
-            RWF ${Number(property.price).toLocaleString()}
         </div>
+    `;
 
-        <p>
-            🛏️ ${property.bedrooms || "Not specified"}
-            Bedrooms
-        </p>
+    document.body.appendChild(popup);
 
-        <p>${property.description}</p>
-
-        <p>👤 Contact: ${property.name}</p>
-
-        <p>📞 ${property.phone}</p>
-
-        <button
-            type="button"
-            class="view-new-property">
-            View Property
-        </button>
-
-    </div>
-`;
-
-     propertyList.appendChild(newProperty);
-
-
-        newProperty
-            .querySelector(".view-new-property")
-            .addEventListener("click", function() {
-
-               viewProperty(
-    property.title,
-    property.location,
-    property.price,
-    property.image_url,
-    property.type,
-    property.bedrooms,
-    property.description,
-    property.name,
-    property.phone
-);
-            });
-
-    });
-
+    document
+        .getElementById("closePropertyPopup")
+        .addEventListener("click", function() {
+            popup.remove();
+        });
 }
-
 
 async function submitProperty(event) {
 
