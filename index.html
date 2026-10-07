@@ -1101,16 +1101,21 @@ function filterCategory(category) {
 }
 
 
-function viewProperty(title, location, price) {
+function viewProperty(title, location, price, image, type, bedrooms, description, name, phone) {
 
     alert(
-        "Property: " + title +
+        "🏠 PROPERTY DETAILS\n\n" +
+        "Title: " + title +
+        "\nType: " + type +
         "\nLocation: " + location +
-        "\nPrice: RWF " + Number(price).toLocaleString()
+        "\nPrice: RWF " + Number(price).toLocaleString() +
+        "\nBedrooms: " + (bedrooms || "Not specified") +
+        "\n\nDescription:\n" + (description || "No description") +
+        "\n\n👤 Owner: " + (name || "Not provided") +
+        "\n📞 Phone: " + (phone || "Not provided")
     );
 
 }
-
 
 async function loadProperties() {
 
@@ -1189,12 +1194,17 @@ if (error) {
             .querySelector(".view-new-property")
             .addEventListener("click", function() {
 
-                viewProperty(
-                    property.title,
-                    property.location,
-                    property.price
-                );
-
+               viewProperty(
+    property.title,
+    property.location,
+    property.price,
+    property.image_url,
+    property.type,
+    property.bedrooms,
+    property.description,
+    property.name,
+    property.phone
+);
             });
 
     });
