@@ -57,7 +57,26 @@
     border-radius: 10px;
     margin-bottom: 15px;
 }
+.contact-button,
+.whatsapp-button {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+}
 
+.contact-button {
+    background: #087f5b;
+    color: white;
+}
+
+.whatsapp-button {
+    background: #25D366;
+    color: white;
+}
 .close-popup {
     position: absolute;
     top: 12px;
@@ -1205,7 +1224,22 @@ function viewProperty(title, location, price, image, type, bedrooms, description
             <p>👤 <strong>Owner:</strong> ${name || "Not provided"}</p>
 
             <p>📞 <strong>Phone:</strong> ${phone || "Not provided"}</p>
+${phone ? `
+    <a
+        href="tel:${phone}"
+        class="contact-button"
+    >
+        📞 Call Owner
+    </a>
 
+    <a
+        href="https://wa.me/${phone.replace(/\D/g, '')}"
+        target="_blank"
+        class="whatsapp-button"
+    >
+        💬 WhatsApp Owner
+    </a>
+` : ""}
         </div>
     `;
 
