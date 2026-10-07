@@ -1099,7 +1099,29 @@ function searchProperties() {
 
     });
 }
+function filterCategory(category) {
 
+    const properties =
+        document.querySelectorAll("#propertyList .property");
+
+    properties.forEach(function(property) {
+
+        const text =
+            property.innerText.toLowerCase();
+
+        if (text.includes(category.toLowerCase())) {
+
+            property.style.display = "block";
+
+        } else {
+
+            property.style.display = "none";
+
+        }
+
+    });
+
+}
     document
         .getElementById("properties")
         .scrollIntoView({
