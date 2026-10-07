@@ -1,5 +1,4 @@
-
-); <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">.from
  
 
@@ -720,14 +719,20 @@ footer {
 
 
                 <button
-                    type="button"
-                    onclick="viewProperty(
-                        'Land for Sale',
-                        'Bugesera, Rwanda',
-                        '25,000,000'
-                    )"
-                >
-
+                   <button
+    type="button"
+    onclick="viewProperty(
+        'Land for Sale',
+        'Bugesera, Rwanda',
+        '25000000',
+        'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80',
+        'Land',
+        '',
+        'Land available for sale in Bugesera.',
+        'Rwanda Property Hub',
+        'Not provided'
+    )"
+>
                     View Property
 
                 </button>
@@ -776,13 +781,20 @@ footer {
 
 
                 <button
-                    type="button"
-                    onclick="viewProperty(
-                        'Luxury Apartment',
-                        'Kigali, Rwanda',
-                        '120,000,000'
-                    )"
-                >
+                  <button
+    type="button"
+    onclick="viewProperty(
+        'Luxury Apartment',
+        'Kigali, Rwanda',
+        '120000000',
+        'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=800&q=80',
+        'Apartment',
+        '3',
+        'Luxury apartment available in Kigali.',
+        'Rwanda Property Hub',
+        'Not provided'
+    )"
+>
 
                     View Property
 
@@ -1214,7 +1226,7 @@ function viewProperty(title, location, price, image, type, bedrooms, description
             <p>📍 <strong>Location:</strong> ${location}</p>
 
             <p class="popup-price">
-                RWF ${Number(price).toLocaleString()}
+                RWF ${Number(String(price).replace(/,/g, '')).toLocaleString()}
             </p>
 
             <p>
