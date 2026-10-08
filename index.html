@@ -1112,54 +1112,110 @@ const supabaseClient = supabase.createClient(
     SUPABASE_KEY
 );
 
-function searchProperties() {
-
+async function searchProperties() {
 
     const type =
         document.getElementById("propertyType").value;
-
 
     const location =
         document.getElementById("location").value
         .toLowerCase()
         .trim();
 
+    const propertyList =
+        document.getElementById("propertyList");
 
-    const properties =
-        document.querySelectorAll(
-            "#propertyList .property"
-        );
+    let query =
+        supabaseClient
+            .from("Properties")
+            .select("*")
+            .order("id", { ascending: false });
 
+    if (type && type !== "Property Type") {
+        query = query.eq("type", type);
+    }
+
+    if (location !== "") {
+        query = query.ilike("location", `%${location}%`);
+    }
+
+    const { data: properties, error } =
+        await query;
+
+    if (error) {
+        console.error("Search error:", error);
+        alert("Search error: " + error.message);
+        return;
+    }
+
+    propertyList.innerHTML = "";
+
+    if (!properties || properties.length === 0) {
+
+        propertyList.innerHTML = `
+            <div class="property">
+                <div class="property-content">
+                    <h3>No properties found</h3>
+                    <p>Try another location or property type.</p>
+                </div>
+            </div>
+        `;
+
+        return;
+    }
 
     properties.forEach(function(property) {
 
+        const propertyDiv =
+            document.createElement("div");
 
-        const text =
-            property.innerText.toLowerCase();
+        propertyDiv.className = "property";
 
+        propertyDiv.innerHTML = `
 
-        const typeMatch =
-            type === "Property Type" ||
-            text.includes(type.toLowerCase());
+            ${property.image_url ? `
+                <img
+                    src="${property.image_url}"
+                    alt="${property.title}"
+                >
+            ` : ""}
 
+            <div class="property-content">
 
-        const locationMatch =
-            location === "" ||
-            text.includes(location);
+                <h3>${property.title}</h3>
 
+                <p>🏠 ${property.type}</p>
 
-        if (typeMatch && locationMatch) {
+                <p>📍 ${property.location}</p>
 
-            property.style.display = "block";
+                <div class="price">
+                    RWF ${Number(property.price).toLocaleString()}
+                </div>
 
-        } else {
+                <button
+                    type="button"
+                    onclick='viewProperty(
+                        ${JSON.stringify(property.title)},
+                        ${JSON.stringify(property.location)},
+                        ${JSON.stringify(property.price)},
+                        ${JSON.stringify(property.image_url || "")},
+                        ${JSON.stringify(property.type)},
+                        ${JSON.stringify(property.bedrooms || "")},
+                        ${JSON.stringify(property.description || "")},
+                        ${JSON.stringify(property.name || "")},
+                        ${JSON.stringify(property.phone || "")}
+                    )'
+                >
+                    View Property
+                </button>
 
-            property.style.display = "none";
+            </div>
+        `;
 
-        }
-
+        propertyList.appendChild(propertyDiv);
 
     });
+
 }
 function filterCategory(category) {
 
