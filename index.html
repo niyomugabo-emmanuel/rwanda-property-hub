@@ -1582,7 +1582,114 @@ document
 
 loadProperties();
 
- 
+ // USER REGISTRATION
+
+const signupForm = document.getElementById("signupForm");
+const loginForm = document.getElementById("loginForm");
+const logoutButton = document.getElementById("logoutButton");
+const authMessage = document.getElementById("authMessage");
+
+
+// SIGN UP
+signupForm.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const email = document.getElementById("signupEmail").value.trim();
+    const password = document.getElementById("signupPassword").value;
+
+    const { data, error } = await supabaseClient.auth.signUp({
+        email: email,
+        password: password
+    });
+
+    if (error) {
+        authMessage.textContent = error.message;
+        return;
+    }
+
+    authMessage.textContent =
+        "Account created! Please check your email to confirm your account.";
+
+    signupForm.reset();
+
+});
+
+
+// LOGIN
+loginForm.addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value;
+
+    const { data, error } = await supabaseClient.auth.signInWithPassword({
+        email: email,
+        password: password
+    });
+
+    if (error) {
+        authMessage.textContent = error.message;
+        return;
+    }
+
+    authMessage.textContent = "Login successful!";
+
+    loginForm.reset();
+
+});
+
+
+// UPDATE ACCOUNT DISPLAY
+async function updateAccount() {
+
+    const { data } = await supabaseClient.auth.getSession();
+
+    const user = data.session?.user;
+
+    if (user) {
+
+        document.getElementById("authForms").style.display = "none";
+
+        document.getElementById("userAccount").style.display = "block";
+
+        document.getElementById("userEmail").textContent = user.email;
+
+    } else {
+
+        document.getElementById("authForms").style.display = "block";
+
+        document.getElementById("userAccount").style.display = "none";
+
+    }
+
+}
+
+
+// LOGOUT
+logoutButton.addEventListener("click", async function() {
+
+    const { error } = await supabaseClient.auth.signOut();
+
+    if (error) {
+        authMessage.textContent = error.message;
+        return;
+    }
+
+    authMessage.textContent = "You have logged out successfully.";
+
+});
+
+
+// CHECK LOGIN STATUS
+supabaseClient.auth.onAuthStateChange(function() {
+
+    updateAccount();
+
+});
+
+updateAccount();
 
  </script>
 
